@@ -3,6 +3,7 @@
 export(estimateLogicles)
 export(gateDoublets)
 export(getLogicle)
+export(matchFCSexports)
 importFrom(PeacoQC,RemoveMargins)
 importFrom(flowCore,compensate)
 importFrom(flowCore,estimateLogicle)

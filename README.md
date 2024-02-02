@@ -17,6 +17,12 @@ devtools::install_github("AUMC-HEMA/CytoTools")
 
 ## Functionalities
 
+**Matching exported FCS populations (matchFCSexports)**
+
+Because Infinicyt only allows for exporting gated populations (but does not support exporting gates), we have created a workflow to assign each cell an identifier which can be used to retro-actively assign cells to gates based on exported FCS files in the original FCS file ("*matchFCSexports*"). This allows for evaluating all gated populations together in one file. 
+
+
+
 **Automated doublet gating (gateDoublets)**
 
 A number of automated doublet gates have been incorporated in cytometry software. The *gateDoublets* function gates doublets using three different methods and returns a matrix with columns indicating whether a method considers that cell a doublet. 
