@@ -17,6 +17,12 @@ devtools::install_github("AUMC-HEMA/CytoTools")
 
 ## Functionalities
 
+**Quick metadata extraction (getFCSmetadata)**
+
+*getFCSmetadata* is a wrapper function around flowCore's "read.FCSheader" that allows for a super quick extraction of all metadata (channel and marker names, cytometers, voltages, etc.) from a large set of FCS files. 
+
+
+
 **Matching exported FCS populations (matchFCSexports)**
 
 Because Infinicyt only allows for exporting gated populations (but does not support exporting gates), we have created a workflow to assign each cell an identifier which can be used to retro-actively assign cells to gates based on exported FCS files in the original FCS file ("*matchFCSexports*"). This allows for evaluating all gated populations together in one file. 
