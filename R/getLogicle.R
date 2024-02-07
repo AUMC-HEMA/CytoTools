@@ -79,6 +79,7 @@ getLogicle <- function(files, verbose = TRUE){
   # Estimate linearization widths
   wParams <- estimateLogicles(files)
   transforms <- list()
+  widths <- c()
   for (channel in colnames(wParams)){
     w <- median(wParams[, channel])
     if (verbose){
@@ -87,10 +88,11 @@ getLogicle <- function(files, verbose = TRUE){
     }
     transforms[[channel]] <- flowCore::logicleTransform(w = w, 
                                                         transformationId = channel)
-    # For some reason, running the the line below is required to construct
-    # a proper transformList??? I cannot figure out why...
-    # If not called, the same width is used for all channels
-    summary(transforms[[channel]])
+    widths <- c(widths, w)
+  }
+  # Assign every w again because every transform has its own environment
+  for (i in seq_along(widths)) {
+    assign("w", widths[i], envir = environment(transforms[[colnames(wParams)[i]]]))
   }
   tfList <- flowCore::transformList(colnames(wParams), transforms)
   return(tfList)
