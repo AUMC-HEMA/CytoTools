@@ -58,8 +58,8 @@ getMFIclusters <- function(MFIData){
   }
   # Create a representation containing the marker and the peak (e.g., "CD4high")
   markerStrings <- peakLabels
-  for (i in seq_along(markers)){
-    markerStrings[, i] <- paste0(markers[i], peakLabels[, i])
+  for (i in seq_along(colnames(MFIData))){
+    markerStrings[, i] <- paste0(colnames(MFIData)[i], peakLabels[, i])
   }
   # Create a representation of all marker strings (e.g., "CD3high_CD4high_CD8low")
   fullStrings <- apply(markerStrings, 1, function(row) paste(row, collapse = "_"))
