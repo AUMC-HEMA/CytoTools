@@ -2,6 +2,7 @@
 
 export(estimateLogicles)
 export(gateDoublets)
+export(getCutoffclusters)
 export(getFCSmetadata)
 export(getLogicle)
 export(getMFIclusters)
