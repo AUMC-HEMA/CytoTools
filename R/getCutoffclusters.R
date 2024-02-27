@@ -21,7 +21,7 @@ getCutoffclusters <- function(MFIData, cutoffs){
   }
   # Create a representation of all marker strings (e.g., "CD3high_CD4high_CD8low")
   fullStrings <- apply(peakLabels, 1, function(row) paste(row, collapse = "/"))
-  peakLabels$annotation <- fullStrings
+  peakLabels$string <- fullStrings
   # Combine the unique strings into metaclusters
   metaclustering <- as.integer(factor(fullStrings, levels = unique(fullStrings)))
   # Format final output
