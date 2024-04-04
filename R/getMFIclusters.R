@@ -15,8 +15,11 @@
 labelPeaks <- function(values){
   # Find peaks
   dens <- density(values)
-  # Identify peak patterns (maximum 3 per channel)
-  peaks <- pracma::findpeaks(dens$y, npeaks = 3)
+  # Identify the two biggest peaks
+  peaks <- pracma::findpeaks(dens$y)
+  peaks <- peaks[order(peaks[,1], decreasing = TRUE), ]
+  peaks <- head(peaks, 2)
+  peaks <- peaks[order(peaks[,3]),]
   if (nrow(peaks) == 1){
     cutoffs <- c()
     labels <- rep("unimodal", length(values))
