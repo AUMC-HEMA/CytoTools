@@ -66,6 +66,8 @@ estimateLogicles <- function(files){
 #' @usage getLogicle(files)
 #' 
 #' @param files List of FCS file paths
+#' @param suffix Suffix that is added to transformed marker (e.g., "_logicle"). 
+#' This requires adding this (empty) channel to the flowframe before transform.
 #' @param verbose Option for printing identified parameters
 #' 
 #' @return A flowCore transformList object
@@ -75,7 +77,7 @@ estimateLogicles <- function(files){
 #' @seealso \code{\link{estimateLogicles}}
 #' 
 #' @export
-getLogicle <- function(files, verbose = TRUE){
+getLogicle <- function(files, suffix = "", verbose = TRUE){
   # Estimate linearization widths
   wParams <- estimateLogicles(files)
   transforms <- list()
@@ -94,6 +96,8 @@ getLogicle <- function(files, verbose = TRUE){
   for (i in seq_along(widths)) {
     assign("w", widths[i], envir = environment(transforms[[colnames(wParams)[i]]]))
   }
-  tfList <- flowCore::transformList(colnames(wParams), transforms)
+  tfList <- flowCore::transformList(from = colnames(wParams), 
+                                    tfun = transforms,
+                                    to = paste0(colnames(wParams), suffix)
   return(tfList)
 }
