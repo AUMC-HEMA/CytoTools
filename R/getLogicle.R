@@ -98,6 +98,6 @@ getLogicle <- function(files, suffix = "", verbose = TRUE){
   }
   tfList <- flowCore::transformList(from = colnames(wParams), 
                                     tfun = transforms,
-                                    to = paste0(colnames(wParams), suffix)
+                                    to = paste0(colnames(wParams), suffix))
   return(tfList)
 }
